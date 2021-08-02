@@ -1,0 +1,49 @@
+#control statements
+DECLARE $data =20 INTEGER;
+
+IF ($data>0)
+{
+LOG "its positive value "  TYPE "INFO";
+}
+ELSE IF($data>10 AND $data <50)
+{
+LOG " validation " & ($data>10) TYPE "INFO";
+LOG "val " & ($data<20) TYPE "INFO";
+LOG "its between value "  TYPE "INFO";
+}
+ELSE
+{
+LOG "its negative value "  TYPE "INFO";
+}
+/*
+CASE $data
+WHEN 20{
+LOG "case passsed " TYPE "INFO";
+}
+WHEN 30{
+LOG "case passsed 2" TYPE "INFO";
+}
+
+WHILE ($i<=5)
+{
+}
+
+REPEAT {
+}WHILE $<=5
+
+
+FOR $i =1 TO 10
+{
+LOG "running " TYPE "INFO";
+}
+*/
+
+FOR $i=1 TO 10 STEP 2
+{
+LOG "i= " & $i TYPE "INFO";
+}
+
+FOR $i=10 DOWNTO 1 STEP 1
+{
+LOG "i= " & $i TYPE "INFO";
+}
