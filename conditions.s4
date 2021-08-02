@@ -1,0 +1,46 @@
+DECLARE $data=10 INTEGER;
+
+/*
+IF ($data>0)
+{
+    LOG " its positive value"  TYPE "INFO";
+
+}
+ELSE IF ($data>0 AND $data<50)
+{
+    LOG " its negative value"  TYPE "INFO";
+
+}ELSE
+{
+LOG "last else " TYPE "INFO";
+}
+
+CASE $data
+WHEN 2
+{
+LOG " data is 2" & $data TYPE "INFO";
+}
+WHEN 10
+{
+LOG " data is 10 " & $data TYPE "INFO";
+}
+
+$i=0
+WHILE ($i<10)
+{
+   LOG " " & $variable TYPE "INFO";
+   $i=$i+1;
+}
+
+
+REPEAT {
+
+LOG " " & $variable TYPE "INFO";
+}WHILE $i<10
+
+*/
+
+FOR $i=10 DOWNTO 1 STEP 2
+{
+LOG "value " & $i TYPE "INFO";
+}

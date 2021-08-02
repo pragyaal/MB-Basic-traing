@@ -1,0 +1,79 @@
+DECLARE $VariableData INTEGER;
+DECLARE $Data=10.23 FLOAT;
+DECLARE $StringData STRING;
+DECLARE $data_char CHAR(20);
+DECLARE $SrialzeVar STRING;
+
+
+$data_char = "APP";
+
+LOG "data_char [" & $data_char  & "]" TYPE "INFO";
+
+DECLARE $datenow DATE;
+$datenow = CURRENTDATE();
+$DateFormat = "%m";
+LOG " " & $datenow TYPE "INFO";
+$DateFormat = "%d";
+LOG " " & $datenow TYPE "INFO";
+$DateFormat = "%Y";
+LOG " " & $datenow TYPE "INFO";
+
+DECLARE RECORD subject{
+    DECLARE FIELD $name STRING;
+    DECLARE FIELD $marks STRING;
+}
+
+
+DECLARE RECORD Additional{
+    DECLARE FIELD $Tag STRING;
+    DECLARE FIELD $Value STRING;
+}
+
+DECLARE RECORD STUDENT{
+    DECLARE FIELD $Name STRING;
+    DECLARE FIELD $age INTEGER;
+    DECLARE FIELD $array[] STRING;
+    DECLARE $Additional[] RECORD Additional;
+    DECLARE $subject[] RECORD subject;
+}
+
+DECLARE VARIABLE $student RECORD STUDENT;
+DECLARE VARIABLE $studentcopy RECORD STUDENT;
+
+
+$student.$Name = "testing";
+$student.$age = 10;
+$student.$array[1]= "testing value";
+LOG "$student.$Name  " & $student.$Name  TYPE "INFO";
+$student.$Additional[1].$Tag = "ROLLNO";
+$student.$Additional[1].$value = "22";
+$student.$Additional[2].$Tag = "CLASS";
+$student.$Additional[2].$value = "10";
+
+
+SERIALIZE $student INTO $SrialzeVar;
+
+LOG "SrialzeVar " & $SrialzeVar TYPE "INFO";
+#{"testing",10,{"testing value"},{{"ROLLNO","22"},{"CLASS","10"}},{}}
+$studentcopy =  $student;
+
+$studentcopy.$Name = "Pragyaal";
+LOG "copy  " & $studentcopy.$Name  TYPE "INFO";
+LOG "$student.$Name  " & $student.$Name  TYPE "INFO";
+
+
+
+
+DECLARE $quantity STRING;
+DECLARE $price STRING;
+DECLARE $cost INTEGER;
+
+$price ="10";
+$cost =20;
+$quantity = $price*$cost;
+
+LOG "quantity " & $quantity TYPE "INFO";
+LOG "cut " & $quantity[2,4] TYPE "INFO";
+LOG "cut " & STRMID($quantity,2,4) TYPE "INFO";
+
+LOG " " & CSC.CSC_STRMID($quantity,2,4) TYPE "INFO";
