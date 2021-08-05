@@ -1,0 +1,29 @@
+DECLARE $answer INTEGER;
+# Calling external function from other binary code
+DECLARE EXTERNAL FUNCTION ADD($one, $two);
+
+LOADPGM "external_add.s4";
+USE FUNCTION "MATHS.ADDEXT" FROM "external_add.s4" AS ADD;
+
+$answer = ADD(10,20);
+
+LOG "answer " & $answer TYPE "INFO";
+
+
+DECLARE EXTERNAL FUNCTION MULTIPLY($one, $two);
+USE FUNCTION "MATHS.MULTEXT" FROM "external_add.s4" AS MULTIPLY;
+
+$answer = MULTIPLY(10,20);
+LOG "answer " & $answer TYPE "INFO";
+
+#calling external statement from other binary code
+
+
+DECLARE EXTERNAL STATEMENT HELLO IN $name AGE IN $age RESULT OUT $ans;
+
+DECLARE VARIABLE $result INTEGER;
+
+LOADPGM "external_add.s4";
+USE STATEMENT "HELLO" FROM "external_add.s4" AS HELLO;
+HELLO "TOM" AGE 10 RESULT $answer;
+LOG "answer " & $answer TYPE "INFO";

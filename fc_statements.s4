@@ -1,0 +1,83 @@
+DECLARE $answer INTEGER;
+
+DECLARE RECORD STUDENT{
+    DECLARE FIELD $Name STRING;
+    DECLARE FIELD $age INTEGER;
+    DECLARE FIELD $array[] STRING;
+}
+
+
+
+DECLARE FUNCTION add($first, $second=1)
+{
+    DECLARE $add INTEGER;
+    $add = $first + $second;
+    RETURN $add;
+}
+
+$answer = add(10,20);
+LOG "answer " & $answer TYPE "INFO";
+
+$answer = add(20);
+LOG "answer " & $answer TYPE "INFO";
+
+DECLARE STATEMENT add IN $number1, IN $number2, OUT $ans, OUT $multiply DROP
+{
+    $ans = $number1+$number2;
+    $multiply = $number1*$number2;
+    RETURN;
+}
+
+add 22,33, $answer;
+LOG " answer from staement " & $answer TYPE "INFO";
+
+DECLARE $student RECORD STUDENT;
+
+
+LOG "$student.$name " & $student.$name TYPE "INFO";
+
+DECLARE FUNCTION studentname_update($studentcopy RECORD STUDENT, $updatename) RECORD STUDENT
+{
+
+DECLARE $stud RECORD STUDENT;
+$stud = $studentcopy;
+
+$stud.$name=$updatename;
+$stud.$age=10;
+RETURN $stud;
+}
+
+$student= studentname_update($student,"applebat");
+LOG "naem of student  " & $student.$name TYPE "INFO";
+
+
+
+
+DECLARE $array[] STRING;
+
+DECLARE FUNCTION setval($arrrynew,$value)
+{
+DECLARE $arraytemp[] STRING;
+$arraytemp = $arrrynew;
+
+$arraytemp[1] = $value;
+RETURN $arraytemp;
+}
+
+$array = setval($array,"valuesis");
+
+LOG "first value " & $array[1] TYPE "INFO";
+
+DECLARE $variable STRING;
+
+statemenname 10 secondvalue 20 dbconnectionid $variable;
+
+DECLARE STATEMENT statemenname IN $inputvar1
+                  secondvalue  IN $variable2
+                dbconnectionid IN OUT $dbid
+{
+LOG "statemenname called "  TYPE "INFO";
+RETURN;
+}
+
+

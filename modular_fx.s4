@@ -1,0 +1,39 @@
+
+DECLARE MODULE STDCLASS{
+
+DECLARE PUBLIC RECORD STUDENT{
+        DECLARE PUBLIC FIELD $Name STRING;
+        DECLARE PUBLIC FIELD $Age INTEGER;
+        DECLARE PUBLIC FIELD $Array[] STRING;
+    }
+
+    /*-------------------------------------------------------------------------------------------
+    * Name: setStudent
+    * Description:  Thsi fucntion adds name and age to student record
+    * InParam:
+    * OutParam:
+    * Throws:
+    --------------------------------------------------------------------------------------------*/
+    DECLARE PUBLIC STATEMENT setStudent IN  OUT $studentrecord[] RECORD STUDENT, IN $nametest, IN $agetest
+    {
+        $studentrecord[ARRAYSIZE($studentrecord)+1].$name=$nametest;
+        $studentrecord[ARRAYSIZE($studentrecord)].$age=$agetest;
+        RETURN;
+    }
+
+}
+
+
+DECLARE $student[] RECORD STDCLASS.STUDENT;
+
+STDCLASS.setStudent $student, "Pragyaal",33;
+
+STDCLASS.setStudent $student, "Pankaj",33;
+STDCLASS.setStudent $student, "Akshay",33;
+STDCLASS.setStudent $student, "kriti",33;
+
+FOR $i=1 TO ARRAYSIZE($student)
+{
+    LOG " " & $student[$i].$name TYPE "INFO";
+}
+
